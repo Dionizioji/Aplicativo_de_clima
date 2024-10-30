@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App - Dionízio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="controls-and-serach-bar" class="rows">
+        <button id="switch-mode-btn" data-toggle="regular">SWITCH MODE</button>
+        <button id="clean-app-btn">CLEAN</button>
+        <input type="text" id="app-search-bar" placeholder="Digite o nome da cidade e aperte ENTER...">
+    </div>
+
+    <div id="today-and-week-weather" class="rows">
+        <div class="today-section">
+            <h2>Hoje</h2>
+            <div id="today-content">
+                <img id="today-icon" src="images/sunny.png" alt="Weather condition">
+                <div id="today-details"></div>
+            </div>
+        </div>
+        <div id="week-weather"></div>
+    </div>
+
+    <div id="graphic-weather" class="rows">
+        <div class="graphics">
+            <div class="metric-container">
+                <img src="images/wind.png" alt="Wind icon" class="metric-icon">
+                <div class="metric-value windy-graphic"></div>
+            </div>
+            
+            <div class="metric-container">
+                <img src="images/sunny.png" alt="Temperature icon" class="metric-icon">
+                <div class="metric-value temperature-graphic"></div>
+            </div>
+            
+            <div class="metric-container">
+                <img src="images/rainy.png" alt="Rain icon" class="metric-icon">
+                <div class="metric-value rain-graphic"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="made-by-me">
+        Feito por Dionízio
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

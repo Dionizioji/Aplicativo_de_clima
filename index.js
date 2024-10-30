@@ -10,13 +10,29 @@ const formatDate = (date) => {
     return `${day}/${month}`
 }
 
-// Critérios de Condição do Clima
-const getWeatherCondition = (precipitationProbability, humidity, windspeed, temperature) => {
-    if (precipitationProbability > 80 && windspeed > 35) {
-        return "Tempestuoso"
-    } else if (precipitationProbability > 60) {
+// Determinar o ícone do clima
+const getWeatherIcon = (condition) => {
+    switch (condition) {
+        case "Tempestuoso":
+            return "images/stormy.png"
+        case "Chuvoso":
+            return "images/rainy.png"
+        case "Nublado":
+        case "Parcialmente Nublado":
+            return "images/partlyCloudy.png"
+        default:
+            return "images/sunny.png"
+    }
+}
+
+// Condição do clima
+const getWeatherCondition = (precipitationProbability, humidity, windspeed) => {
+    if (precipitationProbability > 80) {
+        if (windspeed > 30) return "Tempestuoso"
         return "Chuvoso"
-    } else if (humidity > 85 && temperature < 20) {
+    } else if (precipitationProbability > 50) {
+        return "Chuvoso"
+    } else if (humidity > 85 && precipitationProbability < 20) {
         return "Neblina"
     } else if (humidity > 70) {
         return "Nublado"
@@ -62,18 +78,6 @@ const fetchWeatherData = async (latitude, longitude) => {
     return await response.json()
 }
 
-// Renderizar os parâmetros principais
-const renderGraphics = (data) => {
-    const windGraphic = document.querySelector(".windy-graphic")
-    const tempGraphic = document.querySelector(".temperature-graphic")
-    const rainGraphic = document.querySelector(".rain-graphic")
-
-    windGraphic.innerHTML = `Velocidade média: ${data.windspeed.toFixed(1)} km/h`
-    tempGraphic.innerHTML = `Temperatura média: ${data.temperature}°C`
-    rainGraphic.innerHTML = `Probabilidade de chuva: ${data.precipitationProbability}%`
-}
-
-
 // Renderizar os dados do dia atual
 const renderTodayWeather = (todayData, cityName) => {
     const todayDetails = document.getElementById("today-details")
@@ -104,6 +108,16 @@ const renderWeekWeather = (weekData) => {
     `).join('')
 }
 
+// Renderizar os parâmetros principais
+const renderGraphics = (data) => {
+    const windGraphic = document.querySelector(".windy-graphic")
+    const tempGraphic = document.querySelector(".temperature-graphic")
+    const rainGraphic = document.querySelector(".rain-graphic")
+
+    windGraphic.innerHTML = `Velocidade média: ${data.windspeed.toFixed(1)} km/h`
+    tempGraphic.innerHTML = `Temperatura média: ${data.temperature}°C`
+    rainGraphic.innerHTML = `Probabilidade de chuva: ${data.precipitationProbability}%`
+}
 
 // Processar os dados climáticos
 const processWeatherData = async (city) => {

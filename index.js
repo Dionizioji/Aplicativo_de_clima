@@ -62,6 +62,18 @@ const fetchWeatherData = async (latitude, longitude) => {
     return await response.json()
 }
 
+// Renderizar os parâmetros principais
+const renderGraphics = (data) => {
+    const windGraphic = document.querySelector(".windy-graphic")
+    const tempGraphic = document.querySelector(".temperature-graphic")
+    const rainGraphic = document.querySelector(".rain-graphic")
+
+    windGraphic.innerHTML = `Velocidade média: ${data.windspeed.toFixed(1)} km/h`
+    tempGraphic.innerHTML = `Temperatura média: ${data.temperature}°C`
+    rainGraphic.innerHTML = `Probabilidade de chuva: ${data.precipitationProbability}%`
+}
+
+
 // Renderizar os dados do dia atual
 const renderTodayWeather = (todayData, cityName) => {
     const todayDetails = document.getElementById("today-details")
@@ -92,16 +104,6 @@ const renderWeekWeather = (weekData) => {
     `).join('')
 }
 
-// Renderizar os parâmetros principais
-const renderGraphics = (data) => {
-    const windGraphic = document.querySelector(".windy-graphic")
-    const tempGraphic = document.querySelector(".temperature-graphic")
-    const rainGraphic = document.querySelector(".rain-graphic")
-
-    windGraphic.innerHTML = `Velocidade média: ${data.windspeed.toFixed(1)} km/h`
-    tempGraphic.innerHTML = `Temperatura média: ${data.temperature}°C`
-    rainGraphic.innerHTML = `Probabilidade de chuva: ${data.precipitationProbability}%`
-}
 
 // Processar os dados climáticos
 const processWeatherData = async (city) => {

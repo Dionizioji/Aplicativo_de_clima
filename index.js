@@ -27,24 +27,6 @@ const getWeatherCondition = (precipitationProbability, humidity, windspeed, temp
     }
 }
 
-// Condição do clima
-const getWeatherCondition = (precipitationProbability, humidity, windspeed) => {
-    if (precipitationProbability > 80) {
-        if (windspeed > 30) return "Tempestuoso"
-        return "Chuvoso"
-    } else if (precipitationProbability > 50) {
-        return "Chuvoso"
-    } else if (humidity > 85 && precipitationProbability < 20) {
-        return "Neblina"
-    } else if (humidity > 70) {
-        return "Nublado"
-    } else if (humidity > 40) {
-        return "Parcialmente Nublado"
-    } else {
-        return "Ensolarado"
-    }
-}
-
 // Coordenadas da cidade
 const fetchCityCoordinates = async (city) => {
     try {

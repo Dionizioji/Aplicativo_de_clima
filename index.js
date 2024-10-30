@@ -10,18 +10,20 @@ const formatDate = (date) => {
     return `${day}/${month}`
 }
 
-// Determinar o ícone do clima
-const getWeatherIcon = (condition) => {
-    switch (condition) {
-        case "Tempestuoso":
-            return "images/stormy.png"
-        case "Chuvoso":
-            return "images/rainy.png"
-        case "Nublado":
-        case "Parcialmente Nublado":
-            return "images/partlyCloudy.png"
-        default:
-            return "images/sunny.png"
+// Critérios de Condição do Clima
+const getWeatherCondition = (precipitationProbability, humidity, windspeed, temperature) => {
+    if (precipitationProbability > 80 && windspeed > 35) {
+        return "Tempestuoso"
+    } else if (precipitationProbability > 60) {
+        return "Chuvoso"
+    } else if (humidity > 85 && temperature < 20) {
+        return "Neblina"
+    } else if (humidity > 70) {
+        return "Nublado"
+    } else if (humidity > 40) {
+        return "Parcialmente Nublado"
+    } else {
+        return "Ensolarado"
     }
 }
 
